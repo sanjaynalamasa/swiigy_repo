@@ -1,0 +1,27 @@
+{
+  "name": "food_delivery_app",
+  "version": "1.0.0",
+  "description": "\"my first app using parcel\"",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjaynalamasa/swiggy_parcel.git"
+  },
+  "author": "Sanjay Nalamasa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanjaynalamasa/swiggy_parcel/issues"
+  },
+  "homepage": "https://github.com/sanjaynalamasa/swiggy_parcel#readme",
+  "devDependencies": {
+    "parcel": "^2.15.1"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
