@@ -96,12 +96,14 @@ const Body = () => {
             const data = await fetch(
                 "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.0082852&lng=79.5512119&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
             );
+            const json = await data.json();
             console.log(json);
 
-            const restaurants = 
-                json?.data?.cards?.find(card => 
-                    card.card?.card?.id === "restaurant_grid_listing"
-                )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+            // Try to find the card with restaurants
+            const restaurantCard = json?.data?.cards?.find(card =>
+                card.card?.card?.gridElements?.infoWithStyle?.restaurants
+            );
+            const restaurants = restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
             setListOfRestaurants(restaurants);
         } catch (error) {
