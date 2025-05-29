@@ -1,5 +1,3 @@
-
-
 import RestarauntCard from "./RestarauntCard.jsx";
 import { useState, useEffect } from "react";
 // import restaurantData from "../utils/mockdata.js";
@@ -24,15 +22,12 @@ const Body = () => {
                 "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.0082852&lng=79.5512119&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
             );
             const json = await data.json();
-            console.log(json);
-
-            const restaurants = 
-                json?.data?.cards?.find(card => 
-                    card.card?.card?.id === "restaurant_grid_listing"
-                )?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-
+            const restaurantCard = (json?.data?.cards || []).find(
+                card => card?.card?.card?.gridElements?.infoWithStyle?.restaurants
+            );
+            const restaurants = restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
             setListOfRestaurants(restaurants);
-            setfilteredRestaurants(FilteredRestaruants);
+            setfilteredRestaurants(restaurants);
         } catch (error) {
             console.error("Failed to fetch restaurant data:", error);
         }
@@ -53,7 +48,7 @@ const Body = () => {
                     onClick={() => {
                         console.log(searchText);
                        const filteredRestaurants = listofRestaurants.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())
-                    );//what should i write here for search bar implementing see chatgpt here make it to me
+                    );
                          setfilteredRestaurants(filteredRestaurants);
 
                     }}>Search</button>
